@@ -9,6 +9,7 @@
   justify-content: space-around;
   align-items: center;
   background: linear-gradient(to bottom, #fffef9 90%, #b1acaa 90%);
+  z-index: 999;
 }
 
 .slideOut {
@@ -26,4 +27,23 @@
   justify-content: space-around;
   align-items: center;
   background: linear-gradient(to bottom, #fffef9 90%, #b1acaa 90%);
+}
+
+.text {
+  color: #1a1a1a;
+}
+
+@media (max-width: 500px) {
+  .text {
+    color: #1a1a1a;
+    font-size: 10px;
+  }
+}
+
+.detailBox {
+  position: fixed;
+  left: 0;
+  transform: translateY(-100%);
+  width: 100%;
+  display: flex;
 }

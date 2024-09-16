@@ -3,17 +3,18 @@
 import { useState } from "react";
 import styles from "./headerDetail.module.css";
 
-export interface HeaderDetailProps {}
+export interface HeaderDetailProps {
+  isShow: boolean;
+}
 
-export const HeaderDetail = () => {
-  const [ShowDetail, setShowDetail] = useState(false);
+export const HeaderDetail = (prop: HeaderDetailProps) => {
+  const { isShow } = prop;
   return (
-    <div
-      className={styles.text}
-      onMouseEnter={() => setShowDetail(true)}
-      onMouseLeave={() => setShowDetail(false)}
-    >
-      Content
+    <div className={`${styles.slideOutBox} ${isShow ? styles.slideOut : ""}`}>
+      <div className={styles.text}>Content</div>
+      <div className={styles.text}>Content</div>
+      <div className={styles.text}>Content</div>
+      <div className={styles.text}>Content</div>
     </div>
   );
 };
