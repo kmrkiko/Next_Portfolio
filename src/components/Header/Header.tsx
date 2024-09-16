@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import styles from "./header.module.css";
+import styles from "./header.module.scss";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { HeaderContents } from "../HeaderContents/HeaderContents";
 
