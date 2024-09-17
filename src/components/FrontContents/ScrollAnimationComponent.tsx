@@ -1,32 +1,31 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 import styles from "./frontContents.module.css";
 
-const ScrollAnimationComponent = () => {
+export interface ScrollAnimationComponentProps {
+  transform?: transformType;
+  threshold?: number;
+  children: ReactNode;
+}
+
+export type transformType = `none` | `right` | `left` | `scale`;
+
+export const ScrollAnimationComponent = (
+  props: ScrollAnimationComponentProps
+) => {
+  const { transform = `none`, threshold = 0.5, children } = props;
   const targetRef = useRef(null);
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isAnimateEnd, setIsAnimateEnd] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !isAnimating && !isAnimateEnd) {
+        if (entry.isIntersecting && !isAnimating) {
           setIsAnimating(true);
-
-          // アニメーションの開始
-          setTimeout(() => {
-            // アニメーションが完了したらスクロールを再度有効にする
-            console.log("!!!");
-            setIsAnimating(false);
-            setIsAnimateEnd(true);
-            if (targetRef.current) {
-              observer.unobserve(targetRef.current);
-            }
-          }, 2000); // アニメーションの時間（ミリ秒）
         }
       },
-      { threshold: 0.5 } // 要素が50%表示されたときにトリガー
+      { threshold: threshold } // 要素が50%表示されたときにトリガー
     );
 
     if (targetRef.current) {
@@ -40,16 +39,18 @@ const ScrollAnimationComponent = () => {
     };
   }, [isAnimating]);
 
+  const style =
+    transform === `right`
+      ? `${styles.rightSlideInBox} ${isAnimating ? styles.slideIn : ""}`
+      : transform === `left`
+      ? `${styles.leftSlideInBox} ${isAnimating ? styles.slideIn : ""}`
+      : transform === `scale`
+      ? `${styles.scaleBox} ${isAnimating ? styles.scale : ""}`
+      : `${styles.fadeIn} ${isAnimating ? styles.show : ""}`;
+
   return (
-    <div
-      ref={targetRef}
-      className={`${styles.fadeIn} ${
-        isAnimating || isAnimateEnd ? styles.show : ""
-      }`}
-    >
-      animation
+    <div ref={targetRef}>
+      <div className={style}>{children}</div>
     </div>
   );
 };
-
-export default ScrollAnimationComponent;
