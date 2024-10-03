@@ -18,19 +18,19 @@ export const HeaderContents = (props: HeaderContentsProps) => {
         className={`${styles.slideOutBox} ${!isShow ? styles.slideOut : ""}`}
       >
         <div className={styles.text} onMouseEnter={() => ShowDetail(1)}>
-          Contents
+          Profile
         </div>
         <div className={styles.text} onMouseEnter={() => ShowDetail(2)}>
-          Contents
+          Career
         </div>
         <div className={styles.text} onMouseEnter={() => ShowDetail(3)}>
-          Contents
+          Skill Set
         </div>
         <div className={styles.text} onMouseEnter={() => ShowDetail(4)}>
-          Contents
+          Portfolio
         </div>
         <div className={styles.text} onMouseEnter={() => ShowDetail(5)}>
-          Contents
+          Links
         </div>
       </div>
       <div className={styles.detailBox}>

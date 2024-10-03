@@ -1,13 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./header.module.scss";
 import { TiArrowSortedDown } from "react-icons/ti";
-import {
-  HeaderContents,
-  HeaderContentsProps,
-} from "../HeaderContents/HeaderContents";
-import { HeaderDetailProps } from "../HeaderDetail/HeaderDetail";
+import { HeaderContents } from "../HeaderContents/HeaderContents";
 import { useHeaderEvents } from "./useHeaderEvents";
 
 export const Header = () => {
