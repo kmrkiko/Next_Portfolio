@@ -6,11 +6,8 @@
   flex-direction: column;
 }
 
-.temp {
-  width: 100%;
-}
-
 .tempContent {
+  width: 100vw;
   height: 1000px;
   background-color: aqua;
 }

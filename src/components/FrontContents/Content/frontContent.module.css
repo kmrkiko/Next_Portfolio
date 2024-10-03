@@ -1,0 +1,78 @@
+.rowContent {
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+}
+
+.gridContent {
+  width: 100vw;
+  display: grid;
+  justify-content: space-around;
+  grid-template-columns: 1fr 1fr;
+}
+
+.margine {
+  margin-bottom: 15vh;
+}
+
+.leftMargine {
+  margin-left: 4vw;
+}
+
+.center {
+  align-items: center;
+}
+
+.columnContent {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.textContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.redText {
+  color: rgb(255, 82, 82);
+}
+
+.title {
+  font-size: 100px;
+  font-family: "DelaSuko", sans-serif;
+}
+
+.description {
+  font-size: 30px;
+  font-family: "DelaSuko", sans-serif;
+}
+
+.imageContainer {
+  flex: 2;
+}
+
+.rowItem {
+  height: 300px;
+  background-color: aqua;
+}
+
+.image {
+  width: 15vw; /* 各画像の幅 */
+  height: auto;
+  font-size: 4vw;
+  font-family: "GenEiNuGothic", sans-serif;
+  color: aqua;
+  pointer-events: none;
+}
+
+.portfolio {
+  width: 40vw; /* 各画像の幅 */
+  height: auto;
+}
+
+.invert {
+  filter: invert(100%);
+}

@@ -6,6 +6,7 @@ import styles from "./frontContents.module.css";
 export interface ScrollAnimationComponentProps {
   transform?: transformType;
   threshold?: number;
+  delay?: number; // delayプロパティを追加
   children: ReactNode;
 }
 
@@ -14,7 +15,7 @@ export type transformType = `none` | `right` | `left` | `scale`;
 export const ScrollAnimationComponent = (
   props: ScrollAnimationComponentProps
 ) => {
-  const { transform = `none`, threshold = 0.5, children } = props;
+  const { transform = `none`, threshold = 0.5, delay = 0, children } = props; // デフォルトのdelayを0に設定
   const targetRef = useRef(null);
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -22,10 +23,15 @@ export const ScrollAnimationComponent = (
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !isAnimating) {
-          setIsAnimating(true);
+          const timerId = setTimeout(() => {
+            setIsAnimating(true);
+          }, delay * 1000); // delay秒後にアニメーションを開始
+
+          // クリーンアップ関数でタイマーをクリア
+          return () => clearTimeout(timerId);
         }
       },
-      { threshold: threshold } // 要素が50%表示されたときにトリガー
+      { threshold: threshold }
     );
 
     if (targetRef.current) {
@@ -37,7 +43,7 @@ export const ScrollAnimationComponent = (
         observer.unobserve(targetRef.current);
       }
     };
-  }, [isAnimating]);
+  }, [isAnimating, delay]); // delayも依存配列に追加
 
   const style =
     transform === `right`
