@@ -1,50 +1,102 @@
 import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import { Text } from "@react-three/drei";
 
 export const CircularButtons = ({ numButtons = 8 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const meshRefs = useRef<(THREE.Mesh | null)[]>([]);
+  const rotationRef = useRef<number>(0);
   const [targetRotation, setTargetRotation] = useState(0);
 
-  // 配置するボタンの角度を計算
   const angleStep = (2 * Math.PI) / numButtons;
 
-  // フレームごとに回転を更新
   useFrame(() => {
-    if (groupRef.current) {
-      groupRef.current.rotation.z +=
-        (targetRotation - groupRef.current.rotation.z) * 0.1;
-    }
+    rotationRef.current += (targetRotation - rotationRef.current) * 0.1;
     meshRefs.current.forEach((mesh, i) => {
       if (mesh) {
-        mesh.rotation.z -= (targetRotation - mesh.rotation.z) * 0.1;
+        mesh.position.x = Math.sin((i - rotationRef.current) * angleStep) * 4;
+        mesh.position.y = Math.cos((i - rotationRef.current) * angleStep) * 2;
+        mesh.position.z = Math.cos((i - rotationRef.current) * angleStep) * 2;
       }
     });
   });
 
-  // ボタンクリック時の処理
   const handleClick = (index: number) => {
-    setTargetRotation(-index * angleStep);
+    setTargetRotation(index);
+  };
+
+  const createShaderMaterial = () =>
+    new THREE.ShaderMaterial({
+      uniforms: {},
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragmentShader: `
+        void main() {
+          gl_FragColor = vec4(0.0, 0.5, 1.0, 1.0); // 全面を青色に設定
+        }
+      `,
+    });
+
+  const createRoundedRectGeometry = (width, height, radius, segments) => {
+    const shape = new THREE.Shape();
+    const xOffset = -width / 2;
+    const yOffset = -height / 2;
+
+    shape.moveTo(xOffset + radius, yOffset);
+    shape.lineTo(xOffset + width - radius, yOffset);
+    shape.quadraticCurveTo(
+      xOffset + width,
+      yOffset,
+      xOffset + width,
+      yOffset + radius
+    );
+    shape.lineTo(xOffset + width, yOffset + height - radius);
+    shape.quadraticCurveTo(
+      xOffset + width,
+      yOffset + height,
+      xOffset + width - radius,
+      yOffset + height
+    );
+    shape.lineTo(xOffset + radius, yOffset + height);
+    shape.quadraticCurveTo(
+      xOffset,
+      yOffset + height,
+      xOffset,
+      yOffset + height - radius
+    );
+    shape.lineTo(xOffset, yOffset + radius);
+    shape.quadraticCurveTo(xOffset, yOffset, xOffset + radius, yOffset);
+
+    return new THREE.ShapeGeometry(shape, segments);
   };
 
   return (
-    <group ref={groupRef} rotation={[Math.PI / 4, 0, 0]}>
+    <group ref={groupRef} position={[0, -1, 0]}>
       {Array.from({ length: numButtons }).map((_, i) => (
         <mesh
           key={i}
-          position={[
-            Math.sin(i * angleStep) * 2,
-            Math.cos(i * angleStep) * 2,
-            0,
-          ]}
           ref={(el) => {
-            if (el) meshRefs.current[i] = el; // 各メッシュの参照を配列に保存
+            if (el) meshRefs.current[i] = el;
           }}
           onClick={() => handleClick(i)}
         >
-          <circleGeometry args={[0.3, 32]} />
-          <meshStandardMaterial color="orange" />
+          <primitive object={createRoundedRectGeometry(1.2, 1.2, 0.3, 32)} />
+          <primitive attach="material" object={createShaderMaterial()} />
+          <Text
+            position={[0, 0, 0.1]}
+            fontSize={0.5}
+            color="black"
+            anchorX="center"
+            anchorY="middle"
+          >
+            {i + 1}
+          </Text>
         </mesh>
       ))}
     </group>
