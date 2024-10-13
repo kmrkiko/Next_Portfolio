@@ -4,12 +4,32 @@
   width: 100%;
   height: 100%;
   flex-direction: column;
+  font-size: 20px;
+  color: black;
+  font-family: sans-serif;
 }
 
+.Markdown pre {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.Markdown code {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
 .Container {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding-top: 70px;
   flex-direction: column;
+}
+
+.MarkdownContainer {
+  width: 100%;
+  background-color: rgb(255, 246, 225);
+  border-radius: 15px;
 }

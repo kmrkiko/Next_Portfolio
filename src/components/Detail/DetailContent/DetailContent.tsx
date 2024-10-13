@@ -10,7 +10,9 @@ export const DetailContent = () => {
       <Canvas>
         <CircularButtons />
       </Canvas>
-      <MarkdownRenderer filePath="/images/siteArchitecture.md" />
+      <div className={style.MarkdownContainer}>
+        <MarkdownRenderer filePath="/images/siteArchitecture.md" />
+      </div>
     </div>
   );
 };

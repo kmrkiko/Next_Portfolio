@@ -11,24 +11,11 @@ export const CircularButtons = ({ numButtons = 8 }) => {
 
   const angleStep = (2 * Math.PI) / numButtons;
 
-  useFrame(() => {
-    rotationRef.current += (targetRotation - rotationRef.current) * 0.1;
-    meshRefs.current.forEach((mesh, i) => {
-      if (mesh) {
-        mesh.position.x = Math.sin((i - rotationRef.current) * angleStep) * 4;
-        mesh.position.y = Math.cos((i - rotationRef.current) * angleStep) * 2;
-        mesh.position.z = Math.cos((i - rotationRef.current) * angleStep) * 2;
-      }
-    });
-  });
-
-  const handleClick = (index: number) => {
-    setTargetRotation(index);
-  };
-
   const createShaderMaterial = () =>
     new THREE.ShaderMaterial({
-      uniforms: {},
+      uniforms: {
+        uOpacity: { value: 1 },
+      },
       vertexShader: `
         varying vec2 vUv;
         void main() {
@@ -37,13 +24,40 @@ export const CircularButtons = ({ numButtons = 8 }) => {
         }
       `,
       fragmentShader: `
+        uniform float uOpacity;
         void main() {
-          gl_FragColor = vec4(0.0, 0.5, 1.0, 1.0); // 全面を青色に設定
+          gl_FragColor = vec4(0.0, 0.5, 1.0, uOpacity); // uOpacityを使用して透明度を設定
         }
       `,
+      transparent: true,
     });
 
-  const createRoundedRectGeometry = (width, height, radius, segments) => {
+  useFrame(() => {
+    rotationRef.current += (targetRotation - rotationRef.current) * 0.1;
+    meshRefs.current.forEach((mesh, i) => {
+      if (mesh) {
+        const angle = (i - rotationRef.current) * angleStep;
+        const opacity = (Math.cos(angle) + 2) / 3; // 透明度を動的に計算
+        const material = mesh.material as THREE.ShaderMaterial;
+        material.uniforms.uOpacity.value = opacity;
+
+        mesh.position.x = Math.sin(angle) * 16;
+        mesh.position.y = Math.cos(angle) * 2;
+        mesh.position.z = Math.cos(angle) * 2;
+      }
+    });
+  });
+
+  const handleClick = (index: number) => {
+    setTargetRotation(index);
+  };
+
+  const createRoundedRectGeometry = (
+    width: number,
+    height: number,
+    radius: number,
+    segments: number
+  ) => {
     const shape = new THREE.Shape();
     const xOffset = -width / 2;
     const yOffset = -height / 2;
@@ -86,11 +100,11 @@ export const CircularButtons = ({ numButtons = 8 }) => {
           }}
           onClick={() => handleClick(i)}
         >
-          <primitive object={createRoundedRectGeometry(1.2, 1.2, 0.3, 32)} />
+          <primitive object={createRoundedRectGeometry(5, 1.2, 0.3, 32)} />
           <primitive attach="material" object={createShaderMaterial()} />
           <Text
             position={[0, 0, 0.1]}
-            fontSize={0.5}
+            fontSize={0.7}
             color="black"
             anchorX="center"
             anchorY="middle"
