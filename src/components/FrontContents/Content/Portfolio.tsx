@@ -3,12 +3,11 @@
 import style from "./frontContent.module.css";
 import { ScrollAnimationComponent } from "../ScrollAnimationComponent";
 import { useState } from "react";
-import { ImageScatter } from "./imageScatter";
 import { usePageStateStore } from "@/app/pageStateStore";
 
 export const Portfolio = () => {
   const [isMouseOver, setIsMouseOver] = useState(false);
-
+  const pageStateStore = usePageStateStore();
   const images = [
     "/images/video1.png",
     "/images/ar.drawio (1).png",
@@ -22,7 +21,7 @@ export const Portfolio = () => {
         className={`${style.textContainer} ${isMouseOver ? style.redText : ``}`}
         onMouseEnter={() => setIsMouseOver(true)}
         onMouseLeave={() => setIsMouseOver(false)}
-        onClick={() => console.log("!!!")}
+        onClick={() => pageStateStore.setPageState("profile")}
       >
         <ScrollAnimationComponent transform="left">
           <div className={style.title}>Portfolio→</div>

@@ -1,19 +1,35 @@
 "use client";
 
 import styles from "./header.module.scss";
-import { TiArrowSortedDown } from "react-icons/ti";
+import { TiArrowSortedDown, TiHome } from "react-icons/ti";
 import { HeaderContents } from "../HeaderContents/HeaderContents";
 import { useHeaderEvents } from "./useHeaderEvents";
+import { ContentsList } from "../../../public/Contents/data";
 
 export const Header = () => {
-  const { isShowHeader, showDetail, ShowHeader, ShowDetail, HideHeader } =
-    useHeaderEvents();
+  const {
+    isShowHeader,
+    showDetail,
+    ShowHeader,
+    ShowDetail,
+    HideHeader,
+    pageState,
+    onClickContent,
+  } = useHeaderEvents();
   return (
     <>
       <div
         className={`${styles.header} ${styles.headerBox}`}
         onMouseLeave={() => HideHeader()}
       >
+        {pageState !== "front" && (
+          <div
+            className={styles.homeIcon}
+            onClick={() => onClickContent("front")}
+          >
+            <TiHome />
+          </div>
+        )}
         <div
           className={`${styles.slideOutBox} ${
             isShowHeader ? styles.slideOut : ""
@@ -27,6 +43,8 @@ export const Header = () => {
           isShow={isShowHeader}
           showDetail={showDetail}
           ShowDetail={ShowDetail}
+          onClickContent={onClickContent}
+          ContentsList={ContentsList}
         />
       </div>
     </>

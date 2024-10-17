@@ -3,8 +3,6 @@
 import { FrontContens } from "@/components/FrontContents/FrontContents";
 import { Header } from "@/components/Header/Header";
 import { usePageStateStore } from "./pageStateStore";
-import { CircularButtons } from "@/components/Detail/DetailHeader/CirculerButtons";
-import { Canvas, useFrame } from "@react-three/fiber";
 import { DetailContent } from "@/components/Detail/DetailContent/DetailContent";
 
 export default function Home() {
@@ -12,7 +10,11 @@ export default function Home() {
   return (
     <>
       <Header />
-      <DetailContent />
+      {pageStateStore.pageState === "front" ? (
+        <FrontContens />
+      ) : (
+        <DetailContent />
+      )}
     </>
   );
 }

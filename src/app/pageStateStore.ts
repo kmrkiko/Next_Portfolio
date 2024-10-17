@@ -7,7 +7,7 @@ export type pageTypes = "front" | "profile" | "career" | "skill" | "portfolio";
 export interface PageState {
   pageState: pageTypes;
   index: number;
-  setPageState: (newString: pageTypes) => void;
+  setPageState: (newString: pageTypes, index?: number) => void;
 }
 
 export const usePageStateStore = create<PageState>((set) => ({

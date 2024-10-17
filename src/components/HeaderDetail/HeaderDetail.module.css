@@ -5,18 +5,20 @@
   flex: 1;
   align-items: center;
   background-color: #b1acaa;
-  padding-top: 20px;
+  padding-top: 10px;
   padding-bottom: 15px;
   border-radius: 0 0 15px 15px;
+  height: fit-content;
+  transform: translateY(calc(-100% - 70px));
 }
 
 .slideOut {
-  transform: translateY(calc(100% + 70px));
+  transform: translateY(70px);
 }
 
 .text {
   padding-top: 5px;
   color: #000000;
-  font-size: 15px;
+  font-size: 13px;
   cursor: pointer;
 }
