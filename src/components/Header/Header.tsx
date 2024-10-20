@@ -4,7 +4,7 @@ import styles from "./header.module.scss";
 import { TiArrowSortedDown, TiHome } from "react-icons/ti";
 import { HeaderContents } from "../HeaderContents/HeaderContents";
 import { useHeaderEvents } from "./useHeaderEvents";
-import { ContentsList } from "../../../public/Contents/data";
+import { ContentsList } from "../Detail/DetailContent/data";
 
 export const Header = () => {
   const {

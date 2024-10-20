@@ -1,6 +1,6 @@
 import { pageTypes } from "@/app/pageStateStore";
 import styles from "./headerDetail.module.css";
-import { Content } from "../../../public/Contents/data";
+import { Content } from "../Detail/DetailContent/data";
 
 export interface HeaderDetailProps {
   isShow: boolean;

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { HeaderDetail } from "../HeaderDetail/HeaderDetail";
 import styles from "./headerContents.module.scss";
 import { pageTypes } from "@/app/pageStateStore";
-import { ContentsList } from "../../../public/Contents/data";
+import { ContentsList } from "../Detail/DetailContent/data";
 import { HeaderLinks } from "../HeaderDetail/HeaderLinks";
 
 export interface HeaderContentsProps {

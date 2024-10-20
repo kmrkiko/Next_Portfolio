@@ -21,7 +21,7 @@ export const Portfolio = () => {
         className={`${style.textContainer} ${isMouseOver ? style.redText : ``}`}
         onMouseEnter={() => setIsMouseOver(true)}
         onMouseLeave={() => setIsMouseOver(false)}
-        onClick={() => pageStateStore.setPageState("profile")}
+        onClick={() => pageStateStore.setPageState("portfolio")}
       >
         <ScrollAnimationComponent transform="left">
           <div className={style.title}>Portfolio→</div>

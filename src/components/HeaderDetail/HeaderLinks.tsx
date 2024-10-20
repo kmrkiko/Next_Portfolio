@@ -1,6 +1,6 @@
 import { pageTypes } from "@/app/pageStateStore";
 import styles from "./headerDetail.module.css";
-import { Content } from "../../../public/Contents/data";
+import { Content } from "../Detail/DetailContent/data";
 
 export interface HeaderDetailProps {
   isShow: boolean;
@@ -8,15 +8,24 @@ export interface HeaderDetailProps {
 
 export const HeaderLinks = (props: HeaderDetailProps) => {
   const { isShow } = props;
-  const contents = ["Content", "Content", "Content", "Content"];
 
   return (
     <div className={`${styles.slideOutBox} ${isShow ? styles.slideOut : ""}`}>
-      {contents.map((detail, index) => (
-        <div key={index} className={styles.text}>
-          {detail}
-        </div>
-      ))}
+      <div className={styles.text}>
+        <a className={styles.link} href="mailto:kimura.k.ay1@gmail.com">
+          github
+        </a>
+      </div>{" "}
+      <div className={styles.text}>
+        <a className={styles.link} href="mailto:kimura.k.ay1@gmail.com">
+          Qiita
+        </a>
+      </div>{" "}
+      <div className={styles.text}>
+        <a className={styles.link} href="mailto:kimura.k.ay1@gmail.com">
+          メール：kimura.k.ay1@gmail.com
+        </a>
+      </div>
     </div>
   );
 };

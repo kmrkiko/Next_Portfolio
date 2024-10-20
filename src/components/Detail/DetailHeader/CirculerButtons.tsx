@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Text } from "@react-three/drei";
-import { Content } from "../../../../public/Contents/data";
+import { Content } from "../DetailContent/data";
 
 export interface CircularButtonsProps {
   index: number;
@@ -48,7 +48,9 @@ export const CircularButtons = (props: CircularButtonsProps) => {
 
         const opacity = (Math.cos(angle) + 2) / 3;
         const material = mesh.material as THREE.ShaderMaterial;
-        material.uniforms.uOpacity.value = opacity;
+        if (material.uniforms) {
+          material.uniforms.uOpacity.value = opacity;
+        }
 
         mesh.position.x = (Math.sin(angle) * window.innerWidth) / 100;
         mesh.position.y = Math.cos(angle) * 2;
@@ -99,7 +101,7 @@ export const CircularButtons = (props: CircularButtonsProps) => {
     <group ref={groupRef} position={[0, -1, 0]}>
       {Array.from({ length: contents.length }).map((_, i) => {
         // テキストの幅を計算（仮に1文字あたりの幅を設定）
-        const textWidthEstimate = contents[i].title.length; // 調整が必要
+        const textWidthEstimate = contents[i].title.length * 0.7; // 調整が必要
 
         return (
           <mesh
@@ -112,7 +114,7 @@ export const CircularButtons = (props: CircularButtonsProps) => {
             <primitive
               object={createRoundedRectGeometry(
                 textWidthEstimate + 1,
-                1.4,
+                1.2,
                 0.3,
                 32
               )}
@@ -120,10 +122,11 @@ export const CircularButtons = (props: CircularButtonsProps) => {
             <primitive attach="material" object={createShaderMaterial()} />
             <Text
               position={[0, 0, 0.001]}
-              fontSize={0.7}
+              fontSize={0.5}
               color="black"
               anchorX="center"
               anchorY="middle"
+              font="/fonts/GenEiNuGothic-EB.ttf"
             >
               {contents[i].title}
             </Text>

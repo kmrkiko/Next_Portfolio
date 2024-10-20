@@ -1,77 +1,22 @@
-### 目次 <!-- omit in toc -->
+## 基本情報
 
-- [1 要件](#1要件)
-- [構成](#構成)
+- **年齢**: 24 歳
+- **出身地**: 愛知県
+- **所在地**: 東京都大田区
 
-# 1 要件
+## 趣味・好きなこと
 
-- 載せたい内容
-  - 職歴
-  - 技術分野
-  - 今後の展望
-  - 成果物
-  -
-- 見せ方
-  - ヘッダーに内容一覧
-    - 普段は非表示でカーソル合わせると出る
-    - カーソル合わせると広がる(apple のサイトにみたいに)
-  - トップページはスクロールしていくと内容一覧が並んでいる
-    - 一つ一つはスクロールアニメーション搭載
+### 1.VR
 
-# 構成
+- VR 技術に強い関心を持ち、VR ゲームのプレイや開発に取り組んでいます。
+- 没入感や体験の質を重視し、新しい技術を日々キャッチアップしています。
 
-```mermaid
-classDiagram
-    class Page {
+### 2.音楽
 
-    }
+- 音楽鑑賞と歌唱が趣味です。
+- 日本のロックバンドを中心に幅広いジャンルを楽しんでいます。
 
-    class Header {
-      OnMouthOver()
-      ShowContens()
-      HideCOntents()
-    }
+### 3.ラーメン
 
-    class HeaderContents {
-      isShow
-      titles[]
-      OnMouthOver()
-      ShowDetail(number)
-      HideDetail(number)
-    }
-
-        class HeaderDetail {
-      isShow
-      headerData
-    }
-
-
-    class FrontContents {
-      isShow
-      GoPageTop()
-    }
-
-        class LinksAndContact {
-    }
-
-    class FrontContent {
-      GoContentDetail()
-    }
-
-        class ContentDetail {
-        isShow
-        Visit()
-
-    }
-
-    Page <|-- Header
-    Page <|-- FrontContents
-    Page <|-- ContentDetail
-    Header <|-- HeaderContents
-    HeaderContents <|-- HeaderDetail
-    FrontContents <|-- FrontContent
-    FrontContents <|-- FrontContent
-    FrontContents <|-- FrontContent
-    FrontContents <|-- LinksAndContact
-
-```
+- 好物はラーメンです。
+- 休日には都内のラーメン店を巡り、新たな味の発見を楽しんでいます。
