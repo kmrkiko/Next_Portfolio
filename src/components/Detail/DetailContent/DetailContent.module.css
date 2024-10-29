@@ -25,6 +25,21 @@
   font-size: 17px;
 }
 
+.Markdown p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.Markdown img {
+  max-width: 40%;
+}
+
+.Markdown h4 {
+  font-size: 0.8em;
+}
+
 .Container {
   display: flex;
   justify-content: center;
