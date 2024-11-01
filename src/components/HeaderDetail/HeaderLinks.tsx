@@ -20,7 +20,7 @@ export const HeaderLinks = (props: HeaderDetailProps) => {
         </a>
       </div>{" "}
       <div className={styles.text}>
-        <a className={styles.link} href="mailto:kimura.k.ay1@gmail.com">
+        <a className={styles.link} href="https://qiita.com/Kmr_kiko">
           Qiita
         </a>
       </div>{" "}
