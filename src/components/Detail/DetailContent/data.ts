@@ -24,9 +24,6 @@ export const ContentsList: ContentsList = {
     { mdPath: "/contents/career/project2.md", title: "XRアプリ開発案件" },
   ],
   skill: [
-    { mdPath: "/contents/skill/unity.md", title: "Unity" },
-    { mdPath: "/contents/skill/vr.md", title: "VR" },
-    { mdPath: "/contents/skill/react.md", title: "React" },
     { mdPath: "/contents/skill/ap.md", title: "応用情報技術者" },
     { mdPath: "/contents/skill/toeic.md", title: "TOEIC" },
   ],

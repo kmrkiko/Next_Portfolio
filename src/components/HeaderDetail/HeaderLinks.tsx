@@ -12,7 +12,10 @@ export const HeaderLinks = (props: HeaderDetailProps) => {
   return (
     <div className={`${styles.slideOutBox} ${isShow ? styles.slideOut : ""}`}>
       <div className={styles.text}>
-        <a className={styles.link} href="mailto:kimura.k.ay1@gmail.com">
+        <a
+          className={styles.link}
+          href="https://github.com/kmrkiko/Next_Portfolio"
+        >
           github
         </a>
       </div>{" "}

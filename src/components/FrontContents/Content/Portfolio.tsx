@@ -9,8 +9,8 @@ export const Portfolio = () => {
   const [isMouseOver, setIsMouseOver] = useState(false);
   const pageStateStore = usePageStateStore();
   const images = [
-    "/images/video1.png",
-    "/images/ar.drawio (1).png",
+    "/images/dram.jpg",
+    "/images/ar.png",
     "/images/video1.png",
     "/images/unr.png",
     // 他の画像パス
