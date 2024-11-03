@@ -26,10 +26,11 @@ export const MarkdownRenderer = (props: MarkdownRendererProps) => {
   return (
     <div className={style.Markdown}>
       <ReactMarkdown
-        children={markdownContent}
         remarkPlugins={[[remarkMermaidPlugin, { theme: "dark" }] as any]}
         rehypePlugins={[rehypeRaw, rehypeStringify]}
-      />
+      >
+        {markdownContent}
+      </ReactMarkdown>
     </div>
   );
 };

@@ -41,12 +41,12 @@
 }
 
 .title {
-  font-size: 100px;
+  font-size: clamp(16px, 8vw, 100px);
   font-family: "DelaSuko", sans-serif;
 }
 
 .description {
-  font-size: 30px;
+  font-size: clamp(5px, 3vw, 100px);
   font-family: "DelaSuko", sans-serif;
 }
 
